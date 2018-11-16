@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<ruleset name="Interlutions">
+    <description>Interlutions Coding Standard</description>
+    <arg name="extensions" value="php" />
+
+    <!-- Code must follow the PSR-2 standard -->
+    <rule ref="PSR2" />
+
+    <!-- Code must not contain any "@author" annotation, because you can see them in the VCS -->
+    <!-- Code must not contain any license information in the source files -->
+    <rule ref="Interlutions.Commenting.DisallowAnnotations">
+        <properties>
+            <property name="disallowedAnnotations" type="array">
+                <element value="author" />
+                <element value="license" />
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Code must not contain any license information in the source files -->
+    <rule ref="Interlutions.Commenting.DisallowLicense" />
+
+    <!-- Use short array syntax ("[]" instead of "array()") -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax" />
+
+    <!-- Ensure trailing comma in array definitions with multiple lines -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration.NoComma"/>
+
+    <!-- Disallow todo advices in code, because they should be fixed directly or you should create a ticket for it -->
+    <rule ref="Generic.Commenting.Todo" />
+
+    <!-- Single quotation mark on strings -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.ContainsVar">
+        <severity>0</severity><!-- Allows strings with variable usage -->
+    </rule>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
+
+    <!-- Some useful generic PHP stuff -->
+    <rule ref="Generic.PHP.Syntax" />
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array">
+                <element key="print" value="echo" />
+                <element key="print_r" value="null" />
+                <element key="var_dump" value="null" />
+                <element key="die" value="exit" /><!-- “Join us or die!” -->
+                <element key="dump" value="null" /><!-- Can be used by Symfony & Laravel -->
+                <element key="dd" value="null" /><!-- Can be used by Symfony >=4.1 & Laravel -->
+            </property>
+        </properties>
+    </rule>
+</ruleset>
